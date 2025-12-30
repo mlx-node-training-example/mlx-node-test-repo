@@ -15,3 +15,8 @@ export async function fetchData(url: string): Promise<unknown> {
   }
   return response.json();
 }
+
+// Additional feature for PR
+export function subtract(a: number, b: number): number {
+  return a - b;
+}
