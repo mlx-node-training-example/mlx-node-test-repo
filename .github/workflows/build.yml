@@ -1,0 +1,21 @@
+name: Build
+on:
+  workflow_dispatch:
+  push:
+    branches: [main, test-feature]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build project
+        run: |
+          echo "=== Building Project ==="
+          mkdir -p dist
+          echo "console.log('Built successfully');" > dist/index.js
+          echo "Built at: $(date)" >> dist/build-info.txt
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-output
+          path: dist/
